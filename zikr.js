@@ -92,9 +92,9 @@ function test() {
 
 			for (let i = 0; i < data.data.length; i++) {
 				if (data.data[i].date.gregorian.day == now.getDate()) {
-					arabDate.innerHTML = `<h1>${data.data[i].date.hijri.day - 1} ${
+					arabDate.innerHTML = `<p>${data.data[i].date.hijri.day - 1} ${
 						data.data[i].date.hijri.month.en
-					}, ${data.data[i].date.hijri.year}</h1>`;
+					}, ${data.data[i].date.hijri.year}</p>`;
 
 					let maghrib = data.data[i].timings.Maghrib.split(/[^0-9]/).splice(
 						0,
@@ -125,16 +125,14 @@ function test() {
 						) {
 							fota = fota.join(':');
 							sehri.innerHTML = fota;
-							sehri.style.color = '#ff0000';
-							sehri.classList.toggle('warning');
+							sehri.style.color = '#f9ff21';
 						} else if (
 							now.getHours() == Number(fota[0]) &&
 							fota[1] <= now.getMinutes() &&
-							now.getMinutes - fota[1] < 10
+							now.getMinutes() - fota[1] < 10
 						) {
 							sehri.innerHTML = 'Times Up!';
-							sehri.style.color = '#ff0000';
-							sehri.classList.toggle('warning');
+							sehri.style.color = '#f9ff21';
 						} else {
 							sehri.innerHTML = fota.join(':');
 						}
@@ -164,7 +162,7 @@ function hadith() {
 	fetch(
 		`https://api.alquran.cloud/v1/ayah/${Math.floor(
 			Math.random() * 6237
-		)}/editions/en.asad`
+		)}/editions/bn.bengali`
 	)
 		.then((response) => response.json())
 		.then((data) => {
@@ -174,4 +172,6 @@ function hadith() {
 }
 
 hadith();
-setInterval(hadith, 120000);
+setInterval(hadith, 60000);
+
+//mdn array.find;
